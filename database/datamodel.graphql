@@ -1,0 +1,64 @@
+type Order{
+  id: ID! @unique
+  createdby: String!
+  createdbyemail: String!
+  recipient: String!
+  newhire: Boolean @default(value: "false")
+  hiredate: DateTime
+  hirename: String
+  approvalmanager: String!
+  businessunit: String!
+  attention: String!
+  shippingaddress: String!
+  items: String!
+  total: Float!
+  comments: String!
+  itemtype: String
+  userstartdate: DateTime
+  sla: Int
+}
+
+type ITAMProgress{
+  id: ID! @unique
+  itamowner: ITAM!
+  status: String!
+  verificationemailsent: DateTime!
+  comments: String!
+  productsource: String!
+  oldassettag: String!
+  oldmodel: String!
+  modelofmonitor: String!
+  numofmonitor: String!
+  connectortypes: String!
+  orderpendingemailsent: DateTime!
+  confirmednewhire: DateTime!
+  poordernum: String!
+  dellordernum: String!
+  dellemailnotif: String!
+}
+
+type TechnicianProgress{
+  id: ID! @unique
+  techowner: Technician!
+  status: String!
+  attention: String!
+  confirmeduser: String!
+  costcenter: String!
+  servicetag: String!
+  initialemailsent: DateTime!
+  followupemailsent: DateTime!
+  datecompleted: DateTime!
+  comments: String!
+}
+
+type ITAM{
+  id: ID! @unique
+  name: String!
+  orders: [ITAMProgress!]!
+}
+
+type Technician{
+  id: ID! @unique
+  name: String!
+  orders: [TechnicianProgress!]!
+}

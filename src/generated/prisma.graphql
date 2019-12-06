@@ -1,0 +1,2647 @@
+# source: http://localhost:4466
+# timestamp: Fri Dec 06 2019 13:45:28 GMT-0800 (Pacific Standard Time)
+
+type AggregateITAM {
+  count: Int!
+}
+
+type AggregateITAMProgress {
+  count: Int!
+}
+
+type AggregateOrder {
+  count: Int!
+}
+
+type AggregateTechnician {
+  count: Int!
+}
+
+type AggregateTechnicianProgress {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+scalar DateTime
+
+type ITAM implements Node {
+  id: ID!
+  name: String!
+  orders(where: ITAMProgressWhereInput, orderBy: ITAMProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ITAMProgress!]
+}
+
+"""A connection to a list of items."""
+type ITAMConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ITAMEdge]!
+  aggregate: AggregateITAM!
+}
+
+input ITAMCreateInput {
+  name: String!
+  orders: ITAMProgressCreateManyWithoutItamownerInput
+}
+
+input ITAMCreateOneWithoutOrdersInput {
+  create: ITAMCreateWithoutOrdersInput
+  connect: ITAMWhereUniqueInput
+}
+
+input ITAMCreateWithoutOrdersInput {
+  name: String!
+}
+
+"""An edge in a connection."""
+type ITAMEdge {
+  """The item at the end of the edge."""
+  node: ITAM!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ITAMOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ITAMPreviousValues {
+  id: ID!
+  name: String!
+}
+
+type ITAMProgress implements Node {
+  id: ID!
+  itamowner(where: ITAMWhereInput): ITAM!
+  status: String!
+  verificationemailsent: DateTime!
+  comments: String!
+  productsource: String!
+  oldassettag: String!
+  oldmodel: String!
+  modelofmonitor: String!
+  numofmonitor: String!
+  connectortypes: String!
+  orderpendingemailsent: DateTime!
+  confirmednewhire: DateTime!
+  poordernum: String!
+  dellordernum: String!
+  dellemailnotif: String!
+}
+
+"""A connection to a list of items."""
+type ITAMProgressConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ITAMProgressEdge]!
+  aggregate: AggregateITAMProgress!
+}
+
+input ITAMProgressCreateInput {
+  status: String!
+  verificationemailsent: DateTime!
+  comments: String!
+  productsource: String!
+  oldassettag: String!
+  oldmodel: String!
+  modelofmonitor: String!
+  numofmonitor: String!
+  connectortypes: String!
+  orderpendingemailsent: DateTime!
+  confirmednewhire: DateTime!
+  poordernum: String!
+  dellordernum: String!
+  dellemailnotif: String!
+  itamowner: ITAMCreateOneWithoutOrdersInput!
+}
+
+input ITAMProgressCreateManyWithoutItamownerInput {
+  create: [ITAMProgressCreateWithoutItamownerInput!]
+  connect: [ITAMProgressWhereUniqueInput!]
+}
+
+input ITAMProgressCreateWithoutItamownerInput {
+  status: String!
+  verificationemailsent: DateTime!
+  comments: String!
+  productsource: String!
+  oldassettag: String!
+  oldmodel: String!
+  modelofmonitor: String!
+  numofmonitor: String!
+  connectortypes: String!
+  orderpendingemailsent: DateTime!
+  confirmednewhire: DateTime!
+  poordernum: String!
+  dellordernum: String!
+  dellemailnotif: String!
+}
+
+"""An edge in a connection."""
+type ITAMProgressEdge {
+  """The item at the end of the edge."""
+  node: ITAMProgress!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ITAMProgressOrderByInput {
+  id_ASC
+  id_DESC
+  status_ASC
+  status_DESC
+  verificationemailsent_ASC
+  verificationemailsent_DESC
+  comments_ASC
+  comments_DESC
+  productsource_ASC
+  productsource_DESC
+  oldassettag_ASC
+  oldassettag_DESC
+  oldmodel_ASC
+  oldmodel_DESC
+  modelofmonitor_ASC
+  modelofmonitor_DESC
+  numofmonitor_ASC
+  numofmonitor_DESC
+  connectortypes_ASC
+  connectortypes_DESC
+  orderpendingemailsent_ASC
+  orderpendingemailsent_DESC
+  confirmednewhire_ASC
+  confirmednewhire_DESC
+  poordernum_ASC
+  poordernum_DESC
+  dellordernum_ASC
+  dellordernum_DESC
+  dellemailnotif_ASC
+  dellemailnotif_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ITAMProgressPreviousValues {
+  id: ID!
+  status: String!
+  verificationemailsent: DateTime!
+  comments: String!
+  productsource: String!
+  oldassettag: String!
+  oldmodel: String!
+  modelofmonitor: String!
+  numofmonitor: String!
+  connectortypes: String!
+  orderpendingemailsent: DateTime!
+  confirmednewhire: DateTime!
+  poordernum: String!
+  dellordernum: String!
+  dellemailnotif: String!
+}
+
+type ITAMProgressSubscriptionPayload {
+  mutation: MutationType!
+  node: ITAMProgress
+  updatedFields: [String!]
+  previousValues: ITAMProgressPreviousValues
+}
+
+input ITAMProgressSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ITAMProgressSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ITAMProgressSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ITAMProgressSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ITAMProgressWhereInput
+}
+
+input ITAMProgressUpdateInput {
+  status: String
+  verificationemailsent: DateTime
+  comments: String
+  productsource: String
+  oldassettag: String
+  oldmodel: String
+  modelofmonitor: String
+  numofmonitor: String
+  connectortypes: String
+  orderpendingemailsent: DateTime
+  confirmednewhire: DateTime
+  poordernum: String
+  dellordernum: String
+  dellemailnotif: String
+  itamowner: ITAMUpdateOneWithoutOrdersInput
+}
+
+input ITAMProgressUpdateManyWithoutItamownerInput {
+  create: [ITAMProgressCreateWithoutItamownerInput!]
+  connect: [ITAMProgressWhereUniqueInput!]
+  disconnect: [ITAMProgressWhereUniqueInput!]
+  delete: [ITAMProgressWhereUniqueInput!]
+  update: [ITAMProgressUpdateWithWhereUniqueWithoutItamownerInput!]
+  upsert: [ITAMProgressUpsertWithWhereUniqueWithoutItamownerInput!]
+}
+
+input ITAMProgressUpdateWithoutItamownerDataInput {
+  status: String
+  verificationemailsent: DateTime
+  comments: String
+  productsource: String
+  oldassettag: String
+  oldmodel: String
+  modelofmonitor: String
+  numofmonitor: String
+  connectortypes: String
+  orderpendingemailsent: DateTime
+  confirmednewhire: DateTime
+  poordernum: String
+  dellordernum: String
+  dellemailnotif: String
+}
+
+input ITAMProgressUpdateWithWhereUniqueWithoutItamownerInput {
+  where: ITAMProgressWhereUniqueInput!
+  data: ITAMProgressUpdateWithoutItamownerDataInput!
+}
+
+input ITAMProgressUpsertWithWhereUniqueWithoutItamownerInput {
+  where: ITAMProgressWhereUniqueInput!
+  update: ITAMProgressUpdateWithoutItamownerDataInput!
+  create: ITAMProgressCreateWithoutItamownerInput!
+}
+
+input ITAMProgressWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ITAMProgressWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ITAMProgressWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ITAMProgressWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  status: String
+
+  """All values that are not equal to given value."""
+  status_not: String
+
+  """All values that are contained in given list."""
+  status_in: [String!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [String!]
+
+  """All values less than the given value."""
+  status_lt: String
+
+  """All values less than or equal the given value."""
+  status_lte: String
+
+  """All values greater than the given value."""
+  status_gt: String
+
+  """All values greater than or equal the given value."""
+  status_gte: String
+
+  """All values containing the given string."""
+  status_contains: String
+
+  """All values not containing the given string."""
+  status_not_contains: String
+
+  """All values starting with the given string."""
+  status_starts_with: String
+
+  """All values not starting with the given string."""
+  status_not_starts_with: String
+
+  """All values ending with the given string."""
+  status_ends_with: String
+
+  """All values not ending with the given string."""
+  status_not_ends_with: String
+  verificationemailsent: DateTime
+
+  """All values that are not equal to given value."""
+  verificationemailsent_not: DateTime
+
+  """All values that are contained in given list."""
+  verificationemailsent_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  verificationemailsent_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  verificationemailsent_lt: DateTime
+
+  """All values less than or equal the given value."""
+  verificationemailsent_lte: DateTime
+
+  """All values greater than the given value."""
+  verificationemailsent_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  verificationemailsent_gte: DateTime
+  comments: String
+
+  """All values that are not equal to given value."""
+  comments_not: String
+
+  """All values that are contained in given list."""
+  comments_in: [String!]
+
+  """All values that are not contained in given list."""
+  comments_not_in: [String!]
+
+  """All values less than the given value."""
+  comments_lt: String
+
+  """All values less than or equal the given value."""
+  comments_lte: String
+
+  """All values greater than the given value."""
+  comments_gt: String
+
+  """All values greater than or equal the given value."""
+  comments_gte: String
+
+  """All values containing the given string."""
+  comments_contains: String
+
+  """All values not containing the given string."""
+  comments_not_contains: String
+
+  """All values starting with the given string."""
+  comments_starts_with: String
+
+  """All values not starting with the given string."""
+  comments_not_starts_with: String
+
+  """All values ending with the given string."""
+  comments_ends_with: String
+
+  """All values not ending with the given string."""
+  comments_not_ends_with: String
+  productsource: String
+
+  """All values that are not equal to given value."""
+  productsource_not: String
+
+  """All values that are contained in given list."""
+  productsource_in: [String!]
+
+  """All values that are not contained in given list."""
+  productsource_not_in: [String!]
+
+  """All values less than the given value."""
+  productsource_lt: String
+
+  """All values less than or equal the given value."""
+  productsource_lte: String
+
+  """All values greater than the given value."""
+  productsource_gt: String
+
+  """All values greater than or equal the given value."""
+  productsource_gte: String
+
+  """All values containing the given string."""
+  productsource_contains: String
+
+  """All values not containing the given string."""
+  productsource_not_contains: String
+
+  """All values starting with the given string."""
+  productsource_starts_with: String
+
+  """All values not starting with the given string."""
+  productsource_not_starts_with: String
+
+  """All values ending with the given string."""
+  productsource_ends_with: String
+
+  """All values not ending with the given string."""
+  productsource_not_ends_with: String
+  oldassettag: String
+
+  """All values that are not equal to given value."""
+  oldassettag_not: String
+
+  """All values that are contained in given list."""
+  oldassettag_in: [String!]
+
+  """All values that are not contained in given list."""
+  oldassettag_not_in: [String!]
+
+  """All values less than the given value."""
+  oldassettag_lt: String
+
+  """All values less than or equal the given value."""
+  oldassettag_lte: String
+
+  """All values greater than the given value."""
+  oldassettag_gt: String
+
+  """All values greater than or equal the given value."""
+  oldassettag_gte: String
+
+  """All values containing the given string."""
+  oldassettag_contains: String
+
+  """All values not containing the given string."""
+  oldassettag_not_contains: String
+
+  """All values starting with the given string."""
+  oldassettag_starts_with: String
+
+  """All values not starting with the given string."""
+  oldassettag_not_starts_with: String
+
+  """All values ending with the given string."""
+  oldassettag_ends_with: String
+
+  """All values not ending with the given string."""
+  oldassettag_not_ends_with: String
+  oldmodel: String
+
+  """All values that are not equal to given value."""
+  oldmodel_not: String
+
+  """All values that are contained in given list."""
+  oldmodel_in: [String!]
+
+  """All values that are not contained in given list."""
+  oldmodel_not_in: [String!]
+
+  """All values less than the given value."""
+  oldmodel_lt: String
+
+  """All values less than or equal the given value."""
+  oldmodel_lte: String
+
+  """All values greater than the given value."""
+  oldmodel_gt: String
+
+  """All values greater than or equal the given value."""
+  oldmodel_gte: String
+
+  """All values containing the given string."""
+  oldmodel_contains: String
+
+  """All values not containing the given string."""
+  oldmodel_not_contains: String
+
+  """All values starting with the given string."""
+  oldmodel_starts_with: String
+
+  """All values not starting with the given string."""
+  oldmodel_not_starts_with: String
+
+  """All values ending with the given string."""
+  oldmodel_ends_with: String
+
+  """All values not ending with the given string."""
+  oldmodel_not_ends_with: String
+  modelofmonitor: String
+
+  """All values that are not equal to given value."""
+  modelofmonitor_not: String
+
+  """All values that are contained in given list."""
+  modelofmonitor_in: [String!]
+
+  """All values that are not contained in given list."""
+  modelofmonitor_not_in: [String!]
+
+  """All values less than the given value."""
+  modelofmonitor_lt: String
+
+  """All values less than or equal the given value."""
+  modelofmonitor_lte: String
+
+  """All values greater than the given value."""
+  modelofmonitor_gt: String
+
+  """All values greater than or equal the given value."""
+  modelofmonitor_gte: String
+
+  """All values containing the given string."""
+  modelofmonitor_contains: String
+
+  """All values not containing the given string."""
+  modelofmonitor_not_contains: String
+
+  """All values starting with the given string."""
+  modelofmonitor_starts_with: String
+
+  """All values not starting with the given string."""
+  modelofmonitor_not_starts_with: String
+
+  """All values ending with the given string."""
+  modelofmonitor_ends_with: String
+
+  """All values not ending with the given string."""
+  modelofmonitor_not_ends_with: String
+  numofmonitor: String
+
+  """All values that are not equal to given value."""
+  numofmonitor_not: String
+
+  """All values that are contained in given list."""
+  numofmonitor_in: [String!]
+
+  """All values that are not contained in given list."""
+  numofmonitor_not_in: [String!]
+
+  """All values less than the given value."""
+  numofmonitor_lt: String
+
+  """All values less than or equal the given value."""
+  numofmonitor_lte: String
+
+  """All values greater than the given value."""
+  numofmonitor_gt: String
+
+  """All values greater than or equal the given value."""
+  numofmonitor_gte: String
+
+  """All values containing the given string."""
+  numofmonitor_contains: String
+
+  """All values not containing the given string."""
+  numofmonitor_not_contains: String
+
+  """All values starting with the given string."""
+  numofmonitor_starts_with: String
+
+  """All values not starting with the given string."""
+  numofmonitor_not_starts_with: String
+
+  """All values ending with the given string."""
+  numofmonitor_ends_with: String
+
+  """All values not ending with the given string."""
+  numofmonitor_not_ends_with: String
+  connectortypes: String
+
+  """All values that are not equal to given value."""
+  connectortypes_not: String
+
+  """All values that are contained in given list."""
+  connectortypes_in: [String!]
+
+  """All values that are not contained in given list."""
+  connectortypes_not_in: [String!]
+
+  """All values less than the given value."""
+  connectortypes_lt: String
+
+  """All values less than or equal the given value."""
+  connectortypes_lte: String
+
+  """All values greater than the given value."""
+  connectortypes_gt: String
+
+  """All values greater than or equal the given value."""
+  connectortypes_gte: String
+
+  """All values containing the given string."""
+  connectortypes_contains: String
+
+  """All values not containing the given string."""
+  connectortypes_not_contains: String
+
+  """All values starting with the given string."""
+  connectortypes_starts_with: String
+
+  """All values not starting with the given string."""
+  connectortypes_not_starts_with: String
+
+  """All values ending with the given string."""
+  connectortypes_ends_with: String
+
+  """All values not ending with the given string."""
+  connectortypes_not_ends_with: String
+  orderpendingemailsent: DateTime
+
+  """All values that are not equal to given value."""
+  orderpendingemailsent_not: DateTime
+
+  """All values that are contained in given list."""
+  orderpendingemailsent_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  orderpendingemailsent_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  orderpendingemailsent_lt: DateTime
+
+  """All values less than or equal the given value."""
+  orderpendingemailsent_lte: DateTime
+
+  """All values greater than the given value."""
+  orderpendingemailsent_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  orderpendingemailsent_gte: DateTime
+  confirmednewhire: DateTime
+
+  """All values that are not equal to given value."""
+  confirmednewhire_not: DateTime
+
+  """All values that are contained in given list."""
+  confirmednewhire_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  confirmednewhire_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  confirmednewhire_lt: DateTime
+
+  """All values less than or equal the given value."""
+  confirmednewhire_lte: DateTime
+
+  """All values greater than the given value."""
+  confirmednewhire_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  confirmednewhire_gte: DateTime
+  poordernum: String
+
+  """All values that are not equal to given value."""
+  poordernum_not: String
+
+  """All values that are contained in given list."""
+  poordernum_in: [String!]
+
+  """All values that are not contained in given list."""
+  poordernum_not_in: [String!]
+
+  """All values less than the given value."""
+  poordernum_lt: String
+
+  """All values less than or equal the given value."""
+  poordernum_lte: String
+
+  """All values greater than the given value."""
+  poordernum_gt: String
+
+  """All values greater than or equal the given value."""
+  poordernum_gte: String
+
+  """All values containing the given string."""
+  poordernum_contains: String
+
+  """All values not containing the given string."""
+  poordernum_not_contains: String
+
+  """All values starting with the given string."""
+  poordernum_starts_with: String
+
+  """All values not starting with the given string."""
+  poordernum_not_starts_with: String
+
+  """All values ending with the given string."""
+  poordernum_ends_with: String
+
+  """All values not ending with the given string."""
+  poordernum_not_ends_with: String
+  dellordernum: String
+
+  """All values that are not equal to given value."""
+  dellordernum_not: String
+
+  """All values that are contained in given list."""
+  dellordernum_in: [String!]
+
+  """All values that are not contained in given list."""
+  dellordernum_not_in: [String!]
+
+  """All values less than the given value."""
+  dellordernum_lt: String
+
+  """All values less than or equal the given value."""
+  dellordernum_lte: String
+
+  """All values greater than the given value."""
+  dellordernum_gt: String
+
+  """All values greater than or equal the given value."""
+  dellordernum_gte: String
+
+  """All values containing the given string."""
+  dellordernum_contains: String
+
+  """All values not containing the given string."""
+  dellordernum_not_contains: String
+
+  """All values starting with the given string."""
+  dellordernum_starts_with: String
+
+  """All values not starting with the given string."""
+  dellordernum_not_starts_with: String
+
+  """All values ending with the given string."""
+  dellordernum_ends_with: String
+
+  """All values not ending with the given string."""
+  dellordernum_not_ends_with: String
+  dellemailnotif: String
+
+  """All values that are not equal to given value."""
+  dellemailnotif_not: String
+
+  """All values that are contained in given list."""
+  dellemailnotif_in: [String!]
+
+  """All values that are not contained in given list."""
+  dellemailnotif_not_in: [String!]
+
+  """All values less than the given value."""
+  dellemailnotif_lt: String
+
+  """All values less than or equal the given value."""
+  dellemailnotif_lte: String
+
+  """All values greater than the given value."""
+  dellemailnotif_gt: String
+
+  """All values greater than or equal the given value."""
+  dellemailnotif_gte: String
+
+  """All values containing the given string."""
+  dellemailnotif_contains: String
+
+  """All values not containing the given string."""
+  dellemailnotif_not_contains: String
+
+  """All values starting with the given string."""
+  dellemailnotif_starts_with: String
+
+  """All values not starting with the given string."""
+  dellemailnotif_not_starts_with: String
+
+  """All values ending with the given string."""
+  dellemailnotif_ends_with: String
+
+  """All values not ending with the given string."""
+  dellemailnotif_not_ends_with: String
+  itamowner: ITAMWhereInput
+}
+
+input ITAMProgressWhereUniqueInput {
+  id: ID
+}
+
+type ITAMSubscriptionPayload {
+  mutation: MutationType!
+  node: ITAM
+  updatedFields: [String!]
+  previousValues: ITAMPreviousValues
+}
+
+input ITAMSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ITAMSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ITAMSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ITAMSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ITAMWhereInput
+}
+
+input ITAMUpdateInput {
+  name: String
+  orders: ITAMProgressUpdateManyWithoutItamownerInput
+}
+
+input ITAMUpdateOneWithoutOrdersInput {
+  create: ITAMCreateWithoutOrdersInput
+  connect: ITAMWhereUniqueInput
+  delete: Boolean
+  update: ITAMUpdateWithoutOrdersDataInput
+  upsert: ITAMUpsertWithoutOrdersInput
+}
+
+input ITAMUpdateWithoutOrdersDataInput {
+  name: String
+}
+
+input ITAMUpsertWithoutOrdersInput {
+  update: ITAMUpdateWithoutOrdersDataInput!
+  create: ITAMCreateWithoutOrdersInput!
+}
+
+input ITAMWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ITAMWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ITAMWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ITAMWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  orders_every: ITAMProgressWhereInput
+  orders_some: ITAMProgressWhereInput
+  orders_none: ITAMProgressWhereInput
+}
+
+input ITAMWhereUniqueInput {
+  id: ID
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createOrder(data: OrderCreateInput!): Order!
+  createITAMProgress(data: ITAMProgressCreateInput!): ITAMProgress!
+  createTechnicianProgress(data: TechnicianProgressCreateInput!): TechnicianProgress!
+  createITAM(data: ITAMCreateInput!): ITAM!
+  createTechnician(data: TechnicianCreateInput!): Technician!
+  updateOrder(data: OrderUpdateInput!, where: OrderWhereUniqueInput!): Order
+  updateITAMProgress(data: ITAMProgressUpdateInput!, where: ITAMProgressWhereUniqueInput!): ITAMProgress
+  updateTechnicianProgress(data: TechnicianProgressUpdateInput!, where: TechnicianProgressWhereUniqueInput!): TechnicianProgress
+  updateITAM(data: ITAMUpdateInput!, where: ITAMWhereUniqueInput!): ITAM
+  updateTechnician(data: TechnicianUpdateInput!, where: TechnicianWhereUniqueInput!): Technician
+  deleteOrder(where: OrderWhereUniqueInput!): Order
+  deleteITAMProgress(where: ITAMProgressWhereUniqueInput!): ITAMProgress
+  deleteTechnicianProgress(where: TechnicianProgressWhereUniqueInput!): TechnicianProgress
+  deleteITAM(where: ITAMWhereUniqueInput!): ITAM
+  deleteTechnician(where: TechnicianWhereUniqueInput!): Technician
+  upsertOrder(where: OrderWhereUniqueInput!, create: OrderCreateInput!, update: OrderUpdateInput!): Order!
+  upsertITAMProgress(where: ITAMProgressWhereUniqueInput!, create: ITAMProgressCreateInput!, update: ITAMProgressUpdateInput!): ITAMProgress!
+  upsertTechnicianProgress(where: TechnicianProgressWhereUniqueInput!, create: TechnicianProgressCreateInput!, update: TechnicianProgressUpdateInput!): TechnicianProgress!
+  upsertITAM(where: ITAMWhereUniqueInput!, create: ITAMCreateInput!, update: ITAMUpdateInput!): ITAM!
+  upsertTechnician(where: TechnicianWhereUniqueInput!, create: TechnicianCreateInput!, update: TechnicianUpdateInput!): Technician!
+  updateManyOrders(data: OrderUpdateInput!, where: OrderWhereInput): BatchPayload!
+  updateManyITAMProgresses(data: ITAMProgressUpdateInput!, where: ITAMProgressWhereInput): BatchPayload!
+  updateManyTechnicianProgresses(data: TechnicianProgressUpdateInput!, where: TechnicianProgressWhereInput): BatchPayload!
+  updateManyITAMs(data: ITAMUpdateInput!, where: ITAMWhereInput): BatchPayload!
+  updateManyTechnicians(data: TechnicianUpdateInput!, where: TechnicianWhereInput): BatchPayload!
+  deleteManyOrders(where: OrderWhereInput): BatchPayload!
+  deleteManyITAMProgresses(where: ITAMProgressWhereInput): BatchPayload!
+  deleteManyTechnicianProgresses(where: TechnicianProgressWhereInput): BatchPayload!
+  deleteManyITAMs(where: ITAMWhereInput): BatchPayload!
+  deleteManyTechnicians(where: TechnicianWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+type Order implements Node {
+  id: ID!
+  createdby: String!
+  createdbyemail: String!
+  recipient: String!
+  newhire: Boolean
+  hiredate: DateTime
+  hirename: String
+  approvalmanager: String!
+  businessunit: String!
+  attention: String!
+  shippingaddress: String!
+  items: String!
+  total: Float!
+  comments: String!
+  itemtype: String
+  userstartdate: DateTime
+  sla: Int
+}
+
+"""A connection to a list of items."""
+type OrderConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [OrderEdge]!
+  aggregate: AggregateOrder!
+}
+
+input OrderCreateInput {
+  createdby: String!
+  createdbyemail: String!
+  recipient: String!
+  newhire: Boolean
+  hiredate: DateTime
+  hirename: String
+  approvalmanager: String!
+  businessunit: String!
+  attention: String!
+  shippingaddress: String!
+  items: String!
+  total: Float!
+  comments: String!
+  itemtype: String
+  userstartdate: DateTime
+  sla: Int
+}
+
+"""An edge in a connection."""
+type OrderEdge {
+  """The item at the end of the edge."""
+  node: Order!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum OrderOrderByInput {
+  id_ASC
+  id_DESC
+  createdby_ASC
+  createdby_DESC
+  createdbyemail_ASC
+  createdbyemail_DESC
+  recipient_ASC
+  recipient_DESC
+  newhire_ASC
+  newhire_DESC
+  hiredate_ASC
+  hiredate_DESC
+  hirename_ASC
+  hirename_DESC
+  approvalmanager_ASC
+  approvalmanager_DESC
+  businessunit_ASC
+  businessunit_DESC
+  attention_ASC
+  attention_DESC
+  shippingaddress_ASC
+  shippingaddress_DESC
+  items_ASC
+  items_DESC
+  total_ASC
+  total_DESC
+  comments_ASC
+  comments_DESC
+  itemtype_ASC
+  itemtype_DESC
+  userstartdate_ASC
+  userstartdate_DESC
+  sla_ASC
+  sla_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type OrderPreviousValues {
+  id: ID!
+  createdby: String!
+  createdbyemail: String!
+  recipient: String!
+  newhire: Boolean
+  hiredate: DateTime
+  hirename: String
+  approvalmanager: String!
+  businessunit: String!
+  attention: String!
+  shippingaddress: String!
+  items: String!
+  total: Float!
+  comments: String!
+  itemtype: String
+  userstartdate: DateTime
+  sla: Int
+}
+
+type OrderSubscriptionPayload {
+  mutation: MutationType!
+  node: Order
+  updatedFields: [String!]
+  previousValues: OrderPreviousValues
+}
+
+input OrderSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [OrderSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [OrderSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [OrderSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: OrderWhereInput
+}
+
+input OrderUpdateInput {
+  createdby: String
+  createdbyemail: String
+  recipient: String
+  newhire: Boolean
+  hiredate: DateTime
+  hirename: String
+  approvalmanager: String
+  businessunit: String
+  attention: String
+  shippingaddress: String
+  items: String
+  total: Float
+  comments: String
+  itemtype: String
+  userstartdate: DateTime
+  sla: Int
+}
+
+input OrderWhereInput {
+  """Logical AND on all given filters."""
+  AND: [OrderWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [OrderWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [OrderWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  createdby: String
+
+  """All values that are not equal to given value."""
+  createdby_not: String
+
+  """All values that are contained in given list."""
+  createdby_in: [String!]
+
+  """All values that are not contained in given list."""
+  createdby_not_in: [String!]
+
+  """All values less than the given value."""
+  createdby_lt: String
+
+  """All values less than or equal the given value."""
+  createdby_lte: String
+
+  """All values greater than the given value."""
+  createdby_gt: String
+
+  """All values greater than or equal the given value."""
+  createdby_gte: String
+
+  """All values containing the given string."""
+  createdby_contains: String
+
+  """All values not containing the given string."""
+  createdby_not_contains: String
+
+  """All values starting with the given string."""
+  createdby_starts_with: String
+
+  """All values not starting with the given string."""
+  createdby_not_starts_with: String
+
+  """All values ending with the given string."""
+  createdby_ends_with: String
+
+  """All values not ending with the given string."""
+  createdby_not_ends_with: String
+  createdbyemail: String
+
+  """All values that are not equal to given value."""
+  createdbyemail_not: String
+
+  """All values that are contained in given list."""
+  createdbyemail_in: [String!]
+
+  """All values that are not contained in given list."""
+  createdbyemail_not_in: [String!]
+
+  """All values less than the given value."""
+  createdbyemail_lt: String
+
+  """All values less than or equal the given value."""
+  createdbyemail_lte: String
+
+  """All values greater than the given value."""
+  createdbyemail_gt: String
+
+  """All values greater than or equal the given value."""
+  createdbyemail_gte: String
+
+  """All values containing the given string."""
+  createdbyemail_contains: String
+
+  """All values not containing the given string."""
+  createdbyemail_not_contains: String
+
+  """All values starting with the given string."""
+  createdbyemail_starts_with: String
+
+  """All values not starting with the given string."""
+  createdbyemail_not_starts_with: String
+
+  """All values ending with the given string."""
+  createdbyemail_ends_with: String
+
+  """All values not ending with the given string."""
+  createdbyemail_not_ends_with: String
+  recipient: String
+
+  """All values that are not equal to given value."""
+  recipient_not: String
+
+  """All values that are contained in given list."""
+  recipient_in: [String!]
+
+  """All values that are not contained in given list."""
+  recipient_not_in: [String!]
+
+  """All values less than the given value."""
+  recipient_lt: String
+
+  """All values less than or equal the given value."""
+  recipient_lte: String
+
+  """All values greater than the given value."""
+  recipient_gt: String
+
+  """All values greater than or equal the given value."""
+  recipient_gte: String
+
+  """All values containing the given string."""
+  recipient_contains: String
+
+  """All values not containing the given string."""
+  recipient_not_contains: String
+
+  """All values starting with the given string."""
+  recipient_starts_with: String
+
+  """All values not starting with the given string."""
+  recipient_not_starts_with: String
+
+  """All values ending with the given string."""
+  recipient_ends_with: String
+
+  """All values not ending with the given string."""
+  recipient_not_ends_with: String
+  newhire: Boolean
+
+  """All values that are not equal to given value."""
+  newhire_not: Boolean
+  hiredate: DateTime
+
+  """All values that are not equal to given value."""
+  hiredate_not: DateTime
+
+  """All values that are contained in given list."""
+  hiredate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  hiredate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  hiredate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  hiredate_lte: DateTime
+
+  """All values greater than the given value."""
+  hiredate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  hiredate_gte: DateTime
+  hirename: String
+
+  """All values that are not equal to given value."""
+  hirename_not: String
+
+  """All values that are contained in given list."""
+  hirename_in: [String!]
+
+  """All values that are not contained in given list."""
+  hirename_not_in: [String!]
+
+  """All values less than the given value."""
+  hirename_lt: String
+
+  """All values less than or equal the given value."""
+  hirename_lte: String
+
+  """All values greater than the given value."""
+  hirename_gt: String
+
+  """All values greater than or equal the given value."""
+  hirename_gte: String
+
+  """All values containing the given string."""
+  hirename_contains: String
+
+  """All values not containing the given string."""
+  hirename_not_contains: String
+
+  """All values starting with the given string."""
+  hirename_starts_with: String
+
+  """All values not starting with the given string."""
+  hirename_not_starts_with: String
+
+  """All values ending with the given string."""
+  hirename_ends_with: String
+
+  """All values not ending with the given string."""
+  hirename_not_ends_with: String
+  approvalmanager: String
+
+  """All values that are not equal to given value."""
+  approvalmanager_not: String
+
+  """All values that are contained in given list."""
+  approvalmanager_in: [String!]
+
+  """All values that are not contained in given list."""
+  approvalmanager_not_in: [String!]
+
+  """All values less than the given value."""
+  approvalmanager_lt: String
+
+  """All values less than or equal the given value."""
+  approvalmanager_lte: String
+
+  """All values greater than the given value."""
+  approvalmanager_gt: String
+
+  """All values greater than or equal the given value."""
+  approvalmanager_gte: String
+
+  """All values containing the given string."""
+  approvalmanager_contains: String
+
+  """All values not containing the given string."""
+  approvalmanager_not_contains: String
+
+  """All values starting with the given string."""
+  approvalmanager_starts_with: String
+
+  """All values not starting with the given string."""
+  approvalmanager_not_starts_with: String
+
+  """All values ending with the given string."""
+  approvalmanager_ends_with: String
+
+  """All values not ending with the given string."""
+  approvalmanager_not_ends_with: String
+  businessunit: String
+
+  """All values that are not equal to given value."""
+  businessunit_not: String
+
+  """All values that are contained in given list."""
+  businessunit_in: [String!]
+
+  """All values that are not contained in given list."""
+  businessunit_not_in: [String!]
+
+  """All values less than the given value."""
+  businessunit_lt: String
+
+  """All values less than or equal the given value."""
+  businessunit_lte: String
+
+  """All values greater than the given value."""
+  businessunit_gt: String
+
+  """All values greater than or equal the given value."""
+  businessunit_gte: String
+
+  """All values containing the given string."""
+  businessunit_contains: String
+
+  """All values not containing the given string."""
+  businessunit_not_contains: String
+
+  """All values starting with the given string."""
+  businessunit_starts_with: String
+
+  """All values not starting with the given string."""
+  businessunit_not_starts_with: String
+
+  """All values ending with the given string."""
+  businessunit_ends_with: String
+
+  """All values not ending with the given string."""
+  businessunit_not_ends_with: String
+  attention: String
+
+  """All values that are not equal to given value."""
+  attention_not: String
+
+  """All values that are contained in given list."""
+  attention_in: [String!]
+
+  """All values that are not contained in given list."""
+  attention_not_in: [String!]
+
+  """All values less than the given value."""
+  attention_lt: String
+
+  """All values less than or equal the given value."""
+  attention_lte: String
+
+  """All values greater than the given value."""
+  attention_gt: String
+
+  """All values greater than or equal the given value."""
+  attention_gte: String
+
+  """All values containing the given string."""
+  attention_contains: String
+
+  """All values not containing the given string."""
+  attention_not_contains: String
+
+  """All values starting with the given string."""
+  attention_starts_with: String
+
+  """All values not starting with the given string."""
+  attention_not_starts_with: String
+
+  """All values ending with the given string."""
+  attention_ends_with: String
+
+  """All values not ending with the given string."""
+  attention_not_ends_with: String
+  shippingaddress: String
+
+  """All values that are not equal to given value."""
+  shippingaddress_not: String
+
+  """All values that are contained in given list."""
+  shippingaddress_in: [String!]
+
+  """All values that are not contained in given list."""
+  shippingaddress_not_in: [String!]
+
+  """All values less than the given value."""
+  shippingaddress_lt: String
+
+  """All values less than or equal the given value."""
+  shippingaddress_lte: String
+
+  """All values greater than the given value."""
+  shippingaddress_gt: String
+
+  """All values greater than or equal the given value."""
+  shippingaddress_gte: String
+
+  """All values containing the given string."""
+  shippingaddress_contains: String
+
+  """All values not containing the given string."""
+  shippingaddress_not_contains: String
+
+  """All values starting with the given string."""
+  shippingaddress_starts_with: String
+
+  """All values not starting with the given string."""
+  shippingaddress_not_starts_with: String
+
+  """All values ending with the given string."""
+  shippingaddress_ends_with: String
+
+  """All values not ending with the given string."""
+  shippingaddress_not_ends_with: String
+  items: String
+
+  """All values that are not equal to given value."""
+  items_not: String
+
+  """All values that are contained in given list."""
+  items_in: [String!]
+
+  """All values that are not contained in given list."""
+  items_not_in: [String!]
+
+  """All values less than the given value."""
+  items_lt: String
+
+  """All values less than or equal the given value."""
+  items_lte: String
+
+  """All values greater than the given value."""
+  items_gt: String
+
+  """All values greater than or equal the given value."""
+  items_gte: String
+
+  """All values containing the given string."""
+  items_contains: String
+
+  """All values not containing the given string."""
+  items_not_contains: String
+
+  """All values starting with the given string."""
+  items_starts_with: String
+
+  """All values not starting with the given string."""
+  items_not_starts_with: String
+
+  """All values ending with the given string."""
+  items_ends_with: String
+
+  """All values not ending with the given string."""
+  items_not_ends_with: String
+  total: Float
+
+  """All values that are not equal to given value."""
+  total_not: Float
+
+  """All values that are contained in given list."""
+  total_in: [Float!]
+
+  """All values that are not contained in given list."""
+  total_not_in: [Float!]
+
+  """All values less than the given value."""
+  total_lt: Float
+
+  """All values less than or equal the given value."""
+  total_lte: Float
+
+  """All values greater than the given value."""
+  total_gt: Float
+
+  """All values greater than or equal the given value."""
+  total_gte: Float
+  comments: String
+
+  """All values that are not equal to given value."""
+  comments_not: String
+
+  """All values that are contained in given list."""
+  comments_in: [String!]
+
+  """All values that are not contained in given list."""
+  comments_not_in: [String!]
+
+  """All values less than the given value."""
+  comments_lt: String
+
+  """All values less than or equal the given value."""
+  comments_lte: String
+
+  """All values greater than the given value."""
+  comments_gt: String
+
+  """All values greater than or equal the given value."""
+  comments_gte: String
+
+  """All values containing the given string."""
+  comments_contains: String
+
+  """All values not containing the given string."""
+  comments_not_contains: String
+
+  """All values starting with the given string."""
+  comments_starts_with: String
+
+  """All values not starting with the given string."""
+  comments_not_starts_with: String
+
+  """All values ending with the given string."""
+  comments_ends_with: String
+
+  """All values not ending with the given string."""
+  comments_not_ends_with: String
+  itemtype: String
+
+  """All values that are not equal to given value."""
+  itemtype_not: String
+
+  """All values that are contained in given list."""
+  itemtype_in: [String!]
+
+  """All values that are not contained in given list."""
+  itemtype_not_in: [String!]
+
+  """All values less than the given value."""
+  itemtype_lt: String
+
+  """All values less than or equal the given value."""
+  itemtype_lte: String
+
+  """All values greater than the given value."""
+  itemtype_gt: String
+
+  """All values greater than or equal the given value."""
+  itemtype_gte: String
+
+  """All values containing the given string."""
+  itemtype_contains: String
+
+  """All values not containing the given string."""
+  itemtype_not_contains: String
+
+  """All values starting with the given string."""
+  itemtype_starts_with: String
+
+  """All values not starting with the given string."""
+  itemtype_not_starts_with: String
+
+  """All values ending with the given string."""
+  itemtype_ends_with: String
+
+  """All values not ending with the given string."""
+  itemtype_not_ends_with: String
+  userstartdate: DateTime
+
+  """All values that are not equal to given value."""
+  userstartdate_not: DateTime
+
+  """All values that are contained in given list."""
+  userstartdate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  userstartdate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  userstartdate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  userstartdate_lte: DateTime
+
+  """All values greater than the given value."""
+  userstartdate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  userstartdate_gte: DateTime
+  sla: Int
+
+  """All values that are not equal to given value."""
+  sla_not: Int
+
+  """All values that are contained in given list."""
+  sla_in: [Int!]
+
+  """All values that are not contained in given list."""
+  sla_not_in: [Int!]
+
+  """All values less than the given value."""
+  sla_lt: Int
+
+  """All values less than or equal the given value."""
+  sla_lte: Int
+
+  """All values greater than the given value."""
+  sla_gt: Int
+
+  """All values greater than or equal the given value."""
+  sla_gte: Int
+}
+
+input OrderWhereUniqueInput {
+  id: ID
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  orders(where: OrderWhereInput, orderBy: OrderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Order]!
+  iTAMProgresses(where: ITAMProgressWhereInput, orderBy: ITAMProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ITAMProgress]!
+  technicianProgresses(where: TechnicianProgressWhereInput, orderBy: TechnicianProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TechnicianProgress]!
+  iTAMs(where: ITAMWhereInput, orderBy: ITAMOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ITAM]!
+  technicians(where: TechnicianWhereInput, orderBy: TechnicianOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Technician]!
+  order(where: OrderWhereUniqueInput!): Order
+  iTAMProgress(where: ITAMProgressWhereUniqueInput!): ITAMProgress
+  technicianProgress(where: TechnicianProgressWhereUniqueInput!): TechnicianProgress
+  iTAM(where: ITAMWhereUniqueInput!): ITAM
+  technician(where: TechnicianWhereUniqueInput!): Technician
+  ordersConnection(where: OrderWhereInput, orderBy: OrderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrderConnection!
+  iTAMProgressesConnection(where: ITAMProgressWhereInput, orderBy: ITAMProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ITAMProgressConnection!
+  technicianProgressesConnection(where: TechnicianProgressWhereInput, orderBy: TechnicianProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TechnicianProgressConnection!
+  iTAMsConnection(where: ITAMWhereInput, orderBy: ITAMOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ITAMConnection!
+  techniciansConnection(where: TechnicianWhereInput, orderBy: TechnicianOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TechnicianConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  order(where: OrderSubscriptionWhereInput): OrderSubscriptionPayload
+  iTAMProgress(where: ITAMProgressSubscriptionWhereInput): ITAMProgressSubscriptionPayload
+  technicianProgress(where: TechnicianProgressSubscriptionWhereInput): TechnicianProgressSubscriptionPayload
+  iTAM(where: ITAMSubscriptionWhereInput): ITAMSubscriptionPayload
+  technician(where: TechnicianSubscriptionWhereInput): TechnicianSubscriptionPayload
+}
+
+type Technician implements Node {
+  id: ID!
+  name: String!
+  orders(where: TechnicianProgressWhereInput, orderBy: TechnicianProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TechnicianProgress!]
+}
+
+"""A connection to a list of items."""
+type TechnicianConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [TechnicianEdge]!
+  aggregate: AggregateTechnician!
+}
+
+input TechnicianCreateInput {
+  name: String!
+  orders: TechnicianProgressCreateManyWithoutTechownerInput
+}
+
+input TechnicianCreateOneWithoutOrdersInput {
+  create: TechnicianCreateWithoutOrdersInput
+  connect: TechnicianWhereUniqueInput
+}
+
+input TechnicianCreateWithoutOrdersInput {
+  name: String!
+}
+
+"""An edge in a connection."""
+type TechnicianEdge {
+  """The item at the end of the edge."""
+  node: Technician!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum TechnicianOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type TechnicianPreviousValues {
+  id: ID!
+  name: String!
+}
+
+type TechnicianProgress implements Node {
+  id: ID!
+  techowner(where: TechnicianWhereInput): Technician!
+  status: String!
+  attention: String!
+  confirmeduser: String!
+  costcenter: String!
+  servicetag: String!
+  initialemailsent: DateTime!
+  followupemailsent: DateTime!
+  datecompleted: DateTime!
+  comments: String!
+}
+
+"""A connection to a list of items."""
+type TechnicianProgressConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [TechnicianProgressEdge]!
+  aggregate: AggregateTechnicianProgress!
+}
+
+input TechnicianProgressCreateInput {
+  status: String!
+  attention: String!
+  confirmeduser: String!
+  costcenter: String!
+  servicetag: String!
+  initialemailsent: DateTime!
+  followupemailsent: DateTime!
+  datecompleted: DateTime!
+  comments: String!
+  techowner: TechnicianCreateOneWithoutOrdersInput!
+}
+
+input TechnicianProgressCreateManyWithoutTechownerInput {
+  create: [TechnicianProgressCreateWithoutTechownerInput!]
+  connect: [TechnicianProgressWhereUniqueInput!]
+}
+
+input TechnicianProgressCreateWithoutTechownerInput {
+  status: String!
+  attention: String!
+  confirmeduser: String!
+  costcenter: String!
+  servicetag: String!
+  initialemailsent: DateTime!
+  followupemailsent: DateTime!
+  datecompleted: DateTime!
+  comments: String!
+}
+
+"""An edge in a connection."""
+type TechnicianProgressEdge {
+  """The item at the end of the edge."""
+  node: TechnicianProgress!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum TechnicianProgressOrderByInput {
+  id_ASC
+  id_DESC
+  status_ASC
+  status_DESC
+  attention_ASC
+  attention_DESC
+  confirmeduser_ASC
+  confirmeduser_DESC
+  costcenter_ASC
+  costcenter_DESC
+  servicetag_ASC
+  servicetag_DESC
+  initialemailsent_ASC
+  initialemailsent_DESC
+  followupemailsent_ASC
+  followupemailsent_DESC
+  datecompleted_ASC
+  datecompleted_DESC
+  comments_ASC
+  comments_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type TechnicianProgressPreviousValues {
+  id: ID!
+  status: String!
+  attention: String!
+  confirmeduser: String!
+  costcenter: String!
+  servicetag: String!
+  initialemailsent: DateTime!
+  followupemailsent: DateTime!
+  datecompleted: DateTime!
+  comments: String!
+}
+
+type TechnicianProgressSubscriptionPayload {
+  mutation: MutationType!
+  node: TechnicianProgress
+  updatedFields: [String!]
+  previousValues: TechnicianProgressPreviousValues
+}
+
+input TechnicianProgressSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TechnicianProgressSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TechnicianProgressSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TechnicianProgressSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: TechnicianProgressWhereInput
+}
+
+input TechnicianProgressUpdateInput {
+  status: String
+  attention: String
+  confirmeduser: String
+  costcenter: String
+  servicetag: String
+  initialemailsent: DateTime
+  followupemailsent: DateTime
+  datecompleted: DateTime
+  comments: String
+  techowner: TechnicianUpdateOneWithoutOrdersInput
+}
+
+input TechnicianProgressUpdateManyWithoutTechownerInput {
+  create: [TechnicianProgressCreateWithoutTechownerInput!]
+  connect: [TechnicianProgressWhereUniqueInput!]
+  disconnect: [TechnicianProgressWhereUniqueInput!]
+  delete: [TechnicianProgressWhereUniqueInput!]
+  update: [TechnicianProgressUpdateWithWhereUniqueWithoutTechownerInput!]
+  upsert: [TechnicianProgressUpsertWithWhereUniqueWithoutTechownerInput!]
+}
+
+input TechnicianProgressUpdateWithoutTechownerDataInput {
+  status: String
+  attention: String
+  confirmeduser: String
+  costcenter: String
+  servicetag: String
+  initialemailsent: DateTime
+  followupemailsent: DateTime
+  datecompleted: DateTime
+  comments: String
+}
+
+input TechnicianProgressUpdateWithWhereUniqueWithoutTechownerInput {
+  where: TechnicianProgressWhereUniqueInput!
+  data: TechnicianProgressUpdateWithoutTechownerDataInput!
+}
+
+input TechnicianProgressUpsertWithWhereUniqueWithoutTechownerInput {
+  where: TechnicianProgressWhereUniqueInput!
+  update: TechnicianProgressUpdateWithoutTechownerDataInput!
+  create: TechnicianProgressCreateWithoutTechownerInput!
+}
+
+input TechnicianProgressWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TechnicianProgressWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TechnicianProgressWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TechnicianProgressWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  status: String
+
+  """All values that are not equal to given value."""
+  status_not: String
+
+  """All values that are contained in given list."""
+  status_in: [String!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [String!]
+
+  """All values less than the given value."""
+  status_lt: String
+
+  """All values less than or equal the given value."""
+  status_lte: String
+
+  """All values greater than the given value."""
+  status_gt: String
+
+  """All values greater than or equal the given value."""
+  status_gte: String
+
+  """All values containing the given string."""
+  status_contains: String
+
+  """All values not containing the given string."""
+  status_not_contains: String
+
+  """All values starting with the given string."""
+  status_starts_with: String
+
+  """All values not starting with the given string."""
+  status_not_starts_with: String
+
+  """All values ending with the given string."""
+  status_ends_with: String
+
+  """All values not ending with the given string."""
+  status_not_ends_with: String
+  attention: String
+
+  """All values that are not equal to given value."""
+  attention_not: String
+
+  """All values that are contained in given list."""
+  attention_in: [String!]
+
+  """All values that are not contained in given list."""
+  attention_not_in: [String!]
+
+  """All values less than the given value."""
+  attention_lt: String
+
+  """All values less than or equal the given value."""
+  attention_lte: String
+
+  """All values greater than the given value."""
+  attention_gt: String
+
+  """All values greater than or equal the given value."""
+  attention_gte: String
+
+  """All values containing the given string."""
+  attention_contains: String
+
+  """All values not containing the given string."""
+  attention_not_contains: String
+
+  """All values starting with the given string."""
+  attention_starts_with: String
+
+  """All values not starting with the given string."""
+  attention_not_starts_with: String
+
+  """All values ending with the given string."""
+  attention_ends_with: String
+
+  """All values not ending with the given string."""
+  attention_not_ends_with: String
+  confirmeduser: String
+
+  """All values that are not equal to given value."""
+  confirmeduser_not: String
+
+  """All values that are contained in given list."""
+  confirmeduser_in: [String!]
+
+  """All values that are not contained in given list."""
+  confirmeduser_not_in: [String!]
+
+  """All values less than the given value."""
+  confirmeduser_lt: String
+
+  """All values less than or equal the given value."""
+  confirmeduser_lte: String
+
+  """All values greater than the given value."""
+  confirmeduser_gt: String
+
+  """All values greater than or equal the given value."""
+  confirmeduser_gte: String
+
+  """All values containing the given string."""
+  confirmeduser_contains: String
+
+  """All values not containing the given string."""
+  confirmeduser_not_contains: String
+
+  """All values starting with the given string."""
+  confirmeduser_starts_with: String
+
+  """All values not starting with the given string."""
+  confirmeduser_not_starts_with: String
+
+  """All values ending with the given string."""
+  confirmeduser_ends_with: String
+
+  """All values not ending with the given string."""
+  confirmeduser_not_ends_with: String
+  costcenter: String
+
+  """All values that are not equal to given value."""
+  costcenter_not: String
+
+  """All values that are contained in given list."""
+  costcenter_in: [String!]
+
+  """All values that are not contained in given list."""
+  costcenter_not_in: [String!]
+
+  """All values less than the given value."""
+  costcenter_lt: String
+
+  """All values less than or equal the given value."""
+  costcenter_lte: String
+
+  """All values greater than the given value."""
+  costcenter_gt: String
+
+  """All values greater than or equal the given value."""
+  costcenter_gte: String
+
+  """All values containing the given string."""
+  costcenter_contains: String
+
+  """All values not containing the given string."""
+  costcenter_not_contains: String
+
+  """All values starting with the given string."""
+  costcenter_starts_with: String
+
+  """All values not starting with the given string."""
+  costcenter_not_starts_with: String
+
+  """All values ending with the given string."""
+  costcenter_ends_with: String
+
+  """All values not ending with the given string."""
+  costcenter_not_ends_with: String
+  servicetag: String
+
+  """All values that are not equal to given value."""
+  servicetag_not: String
+
+  """All values that are contained in given list."""
+  servicetag_in: [String!]
+
+  """All values that are not contained in given list."""
+  servicetag_not_in: [String!]
+
+  """All values less than the given value."""
+  servicetag_lt: String
+
+  """All values less than or equal the given value."""
+  servicetag_lte: String
+
+  """All values greater than the given value."""
+  servicetag_gt: String
+
+  """All values greater than or equal the given value."""
+  servicetag_gte: String
+
+  """All values containing the given string."""
+  servicetag_contains: String
+
+  """All values not containing the given string."""
+  servicetag_not_contains: String
+
+  """All values starting with the given string."""
+  servicetag_starts_with: String
+
+  """All values not starting with the given string."""
+  servicetag_not_starts_with: String
+
+  """All values ending with the given string."""
+  servicetag_ends_with: String
+
+  """All values not ending with the given string."""
+  servicetag_not_ends_with: String
+  initialemailsent: DateTime
+
+  """All values that are not equal to given value."""
+  initialemailsent_not: DateTime
+
+  """All values that are contained in given list."""
+  initialemailsent_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  initialemailsent_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  initialemailsent_lt: DateTime
+
+  """All values less than or equal the given value."""
+  initialemailsent_lte: DateTime
+
+  """All values greater than the given value."""
+  initialemailsent_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  initialemailsent_gte: DateTime
+  followupemailsent: DateTime
+
+  """All values that are not equal to given value."""
+  followupemailsent_not: DateTime
+
+  """All values that are contained in given list."""
+  followupemailsent_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  followupemailsent_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  followupemailsent_lt: DateTime
+
+  """All values less than or equal the given value."""
+  followupemailsent_lte: DateTime
+
+  """All values greater than the given value."""
+  followupemailsent_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  followupemailsent_gte: DateTime
+  datecompleted: DateTime
+
+  """All values that are not equal to given value."""
+  datecompleted_not: DateTime
+
+  """All values that are contained in given list."""
+  datecompleted_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  datecompleted_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  datecompleted_lt: DateTime
+
+  """All values less than or equal the given value."""
+  datecompleted_lte: DateTime
+
+  """All values greater than the given value."""
+  datecompleted_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  datecompleted_gte: DateTime
+  comments: String
+
+  """All values that are not equal to given value."""
+  comments_not: String
+
+  """All values that are contained in given list."""
+  comments_in: [String!]
+
+  """All values that are not contained in given list."""
+  comments_not_in: [String!]
+
+  """All values less than the given value."""
+  comments_lt: String
+
+  """All values less than or equal the given value."""
+  comments_lte: String
+
+  """All values greater than the given value."""
+  comments_gt: String
+
+  """All values greater than or equal the given value."""
+  comments_gte: String
+
+  """All values containing the given string."""
+  comments_contains: String
+
+  """All values not containing the given string."""
+  comments_not_contains: String
+
+  """All values starting with the given string."""
+  comments_starts_with: String
+
+  """All values not starting with the given string."""
+  comments_not_starts_with: String
+
+  """All values ending with the given string."""
+  comments_ends_with: String
+
+  """All values not ending with the given string."""
+  comments_not_ends_with: String
+  techowner: TechnicianWhereInput
+}
+
+input TechnicianProgressWhereUniqueInput {
+  id: ID
+}
+
+type TechnicianSubscriptionPayload {
+  mutation: MutationType!
+  node: Technician
+  updatedFields: [String!]
+  previousValues: TechnicianPreviousValues
+}
+
+input TechnicianSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TechnicianSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TechnicianSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TechnicianSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: TechnicianWhereInput
+}
+
+input TechnicianUpdateInput {
+  name: String
+  orders: TechnicianProgressUpdateManyWithoutTechownerInput
+}
+
+input TechnicianUpdateOneWithoutOrdersInput {
+  create: TechnicianCreateWithoutOrdersInput
+  connect: TechnicianWhereUniqueInput
+  delete: Boolean
+  update: TechnicianUpdateWithoutOrdersDataInput
+  upsert: TechnicianUpsertWithoutOrdersInput
+}
+
+input TechnicianUpdateWithoutOrdersDataInput {
+  name: String
+}
+
+input TechnicianUpsertWithoutOrdersInput {
+  update: TechnicianUpdateWithoutOrdersDataInput!
+  create: TechnicianCreateWithoutOrdersInput!
+}
+
+input TechnicianWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TechnicianWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TechnicianWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TechnicianWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  orders_every: TechnicianProgressWhereInput
+  orders_some: TechnicianProgressWhereInput
+  orders_none: TechnicianProgressWhereInput
+}
+
+input TechnicianWhereUniqueInput {
+  id: ID
+}

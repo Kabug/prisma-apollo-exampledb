@@ -1,0 +1,29 @@
+# import Order from "./generated/prisma.graphql"
+
+type Query{
+  orders: [Order!]!
+  order(id: ID!): Order
+}
+
+type Mutation{
+  createOrder(
+  createdby: String!,
+  createdbyemail: String!,
+  recipient: String!,
+  newhire: Boolean,
+  hiredate: DateTime,
+  hirename: String,
+  approvalmanager: String!,
+  businessunit: String!,
+  attention: String!,
+  shippingaddress: String!,
+  items: String!,
+  total: Float!,
+  comments: String!,
+  itemtype: String,
+  userstartdate: DateTime,
+  sla: Int,
+  ): Order
+
+  deleteOrder(id: ID!): Order
+}
