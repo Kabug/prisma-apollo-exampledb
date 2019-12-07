@@ -2,7 +2,7 @@
 That was a pain Dx
 
 
-graphql get-schema (to make prisma schema if you amde any changes to either schemas) 
+graphql get-schema (to make prisma schema if you made any changes to either schemas) 
 
 prisma deploy (if you make any changes to prisma datamodel) 
 
