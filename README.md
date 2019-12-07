@@ -1,34 +1,32 @@
 # prisma-apollo-exampledb
 That was a pain Dx
 
-
-graphql get-schema (to make prisma schema if you made any changes to either schemas) 
-
-prisma deploy (if you make any changes to prisma datamodel) 
-
-node src/index.js (to start apollo/prisma server) 
+Bash Commands:<br />
+graphql get-schema (to make prisma schema if you made any changes to either schemas) <br />
+prisma deploy (if you make any changes to prisma datamodel) <br />
+node src/index.js (to start apollo/prisma server) <br />
 
 
 
-example mutation
-
-mutation{
-	createOrder(
-      createdby: "Bob Bobert"
-      createdbyemail: "Bob.Bobert@totallyrealcompany.com"
-      recipient: "Bobby Bobert"
-    	newhire: false
-    	hirename:""
-      hiredate: ""
-      approvalmanager:"Big Bob"
-      businessunit: "Facility: D15, Cost Center: 4582SO"
-      attention: "Bobby Bobert"
-      shippingaddress:"123 Cookie Street"
-    	items: "1 - 1. STANDARD - Dell Latitude 5490  1 - 1. DOCK - ALL LAPTOPS, 1 - 2. POWER - STANDARD & SERVICE Laptops, "
-      total:1807.00
-      comments:"It was a fine day in wilkhershed... until they removed the port docks! We need more!"
-  ){
-    id
-  }
-}
+Example mutation: <br />
+<br />
+mutation{ <br />
+	createOrder( <br />
+		createdby: "Bob Bobert" <br />
+		createdbyemail: "Bob.Bobert@totallyrealcompany.com" <br />
+		recipient: "Bobby Bobert" <br />
+		newhire: false <br />
+		hirename:"" <br />
+		hiredate: "" <br />
+		approvalmanager:"Big Bob" <br />
+		businessunit: "Facility: D15, Cost Center: 4582SO" <br />
+		attention: "Bobby Bobert" <br />
+		shippingaddress:"123 Cookie Street" <br />
+		items: "1 - 1. STANDARD - Dell Latitude 5490  1 - 1. DOCK - ALL LAPTOPS, 1 - 2. POWER - STANDARD & SERVICE Laptops," <br /> 
+		total:1807.00 <br />
+		comments:"It was a fine day in wilkhershed... until they removed the port docks! We need more!" <br />
+	){ <br />
+		id <br />
+	} <br />
+} <br />
 
