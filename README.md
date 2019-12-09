@@ -9,7 +9,7 @@ $ node src/index.js (to start apollo/prisma server)
 ```
 
 
-# Example mutation: <br />
+# Example mutations: <br />
 ### Create
 ```sh
 mutation{ 
