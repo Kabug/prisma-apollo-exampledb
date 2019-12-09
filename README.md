@@ -9,6 +9,7 @@ node src/index.js (to start apollo/prisma server) <br />
 
 
 Example mutation: <br />
+Create<br />
 <br />
 mutation{ <br />
 	createOrder( <br />
@@ -29,4 +30,12 @@ mutation{ <br />
 		id <br />
 	} <br />
 } <br />
-
+<br />
+Delete<br />
+mutation{<br />
+  deleteOrder(<br />
+  	id: "ck3uohlsn052m0837au9644xi"<br />
+  ){<br />
+    id<br />
+  }<br />
+}<br />
