@@ -20,13 +20,13 @@ mutation{
 		newhire: false 
 		hirename:"" 
 		hiredate: "" 
-		approvalmanager:"Big Bob" 
+		approvalmanager: "Big Bob" 
 		businessunit: "Facility: D15, Cost Center: 4582SO" 
 		attention: "Bobby Bobert" 
 		shippingaddress:"123 Cookie Street" 
 		items: "1 - 1. STANDARD - Dell Latitude 5490  1 - 1. DOCK - ALL LAPTOPS, 1 - 2. POWER - STANDARD & SERVICE Laptops,"
 		total:1807.00 
-		comments:"It was a fine day in wilkhershed... until they removed the port docks! We need more!" 
+		comments:"It was a fine day in wilkhershed... until they removed the port docks! We need more! also a laptop please :)" 
 	){ 
 		id 
 	} 
