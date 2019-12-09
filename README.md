@@ -32,14 +32,13 @@ mutation{
 	} 
 } 
 ```
-### 
-Delete
+### Delete
 ```sh
 mutation{
   deleteOrder(
   	id: "ck3uohlsn052m0837au9644xi"
   ){
-    id
+    	id
   }
 }
 ```
