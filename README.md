@@ -1,15 +1,17 @@
 # prisma-apollo-exampledb
 That was a pain Dx
 
-Bash Commands:<br />
-graphql get-schema (to make prisma schema if you made any changes to either schemas) <br />
-prisma deploy (if you make any changes to prisma datamodel) <br />
-node src/index.js (to start apollo/prisma server) <br />
+### Bash Commands:<br />
+```sh
+$ graphql get-schema (to make prisma schema if you made any changes to either schemas) <br />
+$ prisma deploy (if you make any changes to prisma datamodel) <br />
+$ node src/index.js (to start apollo/prisma server) <br />
+```
 
 
-
-Example mutation: <br />
-Create<br />
+# Example mutation: <br />
+### Create<br />
+```sh
 <br />
 mutation{ <br />
 	createOrder( <br />
@@ -30,8 +32,10 @@ mutation{ <br />
 		id <br />
 	} <br />
 } <br />
-<br />
+```
+### <br />
 Delete<br />
+```sh
 mutation{<br />
   deleteOrder(<br />
   	id: "ck3uohlsn052m0837au9644xi"<br />
@@ -39,10 +43,14 @@ mutation{<br />
     id<br />
   }<br />
 }<br />
+```
 <br />
-Query
+### Query<br />
+```sh
 query{<br />
   orders{<br />
     id<br />
   }<br />
+ ```
+ <br />
 }<br />
