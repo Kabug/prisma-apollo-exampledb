@@ -39,3 +39,10 @@ mutation{<br />
     id<br />
   }<br />
 }<br />
+<br />
+Query
+query{<br />
+  orders{<br />
+    id<br />
+  }<br />
+}<br />
