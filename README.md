@@ -11,6 +11,7 @@ $ node src/index.js (to start apollo/prisma server)
 
 # Example mutations: <br />
 ### Create
+
 ```sh
 mutation{ 
 	createOrder( 
@@ -32,6 +33,7 @@ mutation{
 	} 
 } 
 ```
+Note: Date has to be format YYYY-MM-DD<br />
 ### Delete
 ```sh
 mutation{
