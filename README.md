@@ -1,5 +1,6 @@
 # prisma-apollo-exampledb
 That was a pain Dx
+This is a boilerplate I created for myself. Feel free to use if you'd like!
 
 ### Bash Commands:
 ```sh
